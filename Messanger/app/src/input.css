@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.alert-primary {
+  @apply m-4 p-4  w-1/2 text-blue-700 bg-blue-100 rounded-lg;
+}
+.alert-secondary {
+  @apply m-4 p-4  w-1/2 text-stone-600 bg-gray-100 rounded-lg;
+}
+.alert-success {
+  @apply m-4 p-4  w-1/2 text-lime-700 bg-green-100 rounded-lg;
+}
+.alert-danger {
+  @apply m-4 p-4  w-1/2 text-red-800 bg-red-100 rounded-lg;
+}
+.alert-warning {
+  @apply m-4 p-4  w-1/2 text-yellow-900 bg-yellow-100 rounded-lg;
+}
+.alert-info {
+  @apply m-4 p-4  w-1/2 text-cyan-700 bg-cyan-100 rounded-lg;
+}
+.btn-primary {
+  @apply px-4 py-1  bg-blue-500 hover:bg-blue-700 text-white   rounded;
+}
+.btn-secondary {
+  @apply px-4 py-1  bg-gray-500 hover:bg-gray-700 text-white   rounded;
+}
+
+.btn-success {
+  @apply px-4 py-1  bg-green-500    hover:bg-green-700   text-white   rounded;
+}
+
+.btn-danger {
+  @apply px-4 py-1  bg-red-500 hover:bg-red-700 text-white  rounded;
+}
+
+.btn-warning {
+  @apply px-4 py-1  bg-yellow-500 hover:bg-yellow-700 text-white rounded;
+}
+
+.btn-info {
+  @apply px-4 py-1  bg-cyan-500 hover:bg-cyan-700 text-white  rounded;
+}
+.btn-dark {
+  @apply px-4 py-1  bg-gray-800 hover:bg-gray-900 text-white  rounded;
+}
+.btn-light {
+  @apply px-4 py-1  bg-gray-200 hover:bg-gray-500 text-current  rounded;
+}
+
+.btn-follow {
+  @apply px-4 py-1  bg-purple-600 hover:bg-purple-900 text-white  rounded;
+}
+.btn-indigo {
+  @apply px-4 py-1  bg-indigo-500 hover:bg-indigo-800 text-white  rounded;
+}
