@@ -1,23 +1,19 @@
 <?php
+//remove_chat.php
 
-extract($_POST);
+include('database_connection.php');
 
-$json_arr = json_decode(file_get_contents('../../storage/massage.json'), true);
+if(isset($_POST["id"]))
+{
+	$query = "
+	UPDATE chat_message 
+	SET status = '2' 
+	WHERE chat_message_id = '".$_POST["id"]."'
+	";
 
+	$statement = $connect->prepare($query);
 
-
-
-$arr_index = array();
-foreach ($json_arr  as $key => $value) {
-    if ($value['id'] == $_POST["id"]) {
-        $arr_index[] = $key;
-    }
+	$statement->execute();
 }
-foreach ($arr_index as $i) {
-    unset($json_arr[$i]);
-}
-$json_arr = array_values($json_arr);
 
-
-
-file_put_contents("../../storage/massage.json", json_encode($json_arr, JSON_PRETTY_PRINT));
+?>

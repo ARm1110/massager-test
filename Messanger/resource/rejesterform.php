@@ -17,45 +17,7 @@
 </style>
 
 <body>
-    <!-- submit=error start -->
-    <?php
-    $massaged = null;
-    $massagedText = null;
 
-    if (isset($_GET['submit']) && $_GET['submit'] == 'error') {
-        $massaged = "error";
-        $massagedText = "This username already exists!";
-    } elseif (isset($_GET['pass']) && $_GET['pass'] == 'error') {
-        $massaged = "error";
-        $massagedText = "Your password does not match!";
-    } elseif (isset($_GET['submit']) && $_GET['submit'] == 'success') {
-        $massaged = "success";
-        $massagedText = "Registration was successful!";
-    }
-    if (isset($_GET['submit']) && $_GET['submit'] == 'NotFull') {
-        $massaged = "error";
-        $massagedText = "Inputs are empty please fill";
-    }
-    ?>
-    <!-- submit=error end-->
-
-    <!-- submit=error front start-->
-    <div class="container fixed-top">
-        <?php if ($massaged == 'error' && $massagedText !== null) { ?>
-            <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                <strong>Failed</strong>! <?php echo $massagedText; ?>
-            </div>
-        <?php
-        } elseif ($massaged == 'success' && $massagedText !== null) { ?>
-            <div class="alert alert-success alert-dismissible">
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                <strong>Success!</strong> <?php echo $massagedText; ?>
-            </div>
-        <?php } ?>
-    </div>
-    <!-- submit=error front end-->
-    <!-- onclick="document.getElementById('username').style.borderColor= 'inherit;'" -->
     <!-- form singup  start-->
     <div class="container   ">
         <div class="row d-flex justify-content-center mt-5 ">
@@ -85,7 +47,11 @@
                             </div>
                             <div class="mb-3">
                                 <label for="pwd" class="form-label">Password:</label>
-                                <input type="password" name="newpassword" class="form-control" id="pwd" onclick="document.getElementById('pwd').style.borderColor= 'lightblue'" placeholder="Enter password">
+                                <input type="password" name="password" class="form-control" id="pwd" onclick="document.getElementById('pwd').style.borderColor= 'lightblue'" placeholder="Enter password">
+                            </div>
+                            <div class="mb-3">
+                                <label for="pwd" class="form-label">confirm_password:</label>
+                                <input type="password" name="confirm_password" class="form-control" id="pwd" onclick="document.getElementById('pwd').style.borderColor= 'lightblue'" placeholder="Enter password">
                             </div>
 
                     </div>

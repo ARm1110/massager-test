@@ -1,17 +1,28 @@
 <?php
-extract($_POST);
-
-$massages = json_decode(file_get_contents('../../storage/massage.json'), true);
-
-$massage = [
-    'id' => $time . $username,
-    "username" => $username,
-    "massage" => $massage,
-    "time" => $time,
-
-];
 
 
-$massages[] = $massage;
+//insert_chat.php
 
-file_put_contents("../../storage/massage.json", json_encode($massages, JSON_PRETTY_PRINT));
+include('database_connection.php');
+
+session_start();
+
+$data = array(
+    ':from_user_id'        =>    $username,
+    ':chat_message'        =>    $massage,
+    ':status'            =>    '1'
+);
+
+$query = "
+INSERT INTO chat_message 
+(from_user_id, chat_message, status) 
+VALUES ( :from_user_id, :chat_message, :status)
+";
+
+$statement = $connect->prepare($query);
+
+if ($statement->execute($data)) {
+} else {
+    die("Error executing query ");
+};
+?>

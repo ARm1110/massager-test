@@ -17,29 +17,6 @@
 </style>
 
 <body>
-    <!-- php set massaged start-->
-    <?php
-    $massaged = null;
-    $massagedText = null;
-
-    if (isset($_GET['submit']) && $_GET['submit'] == 'error') {
-        $massaged = "error";
-        $massagedText = "not found";
-    }
-    ?>
-    <!-- php set massaged end->
-  
-   <!-- show front massage start -->
-    <div class="container fixed-top ">
-        <?php if ($massaged == 'error' && $massagedText !== null) { ?>
-            <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                <strong>Failed</strong>! <?php echo $massagedText; ?>
-            </div>
-        <?php } ?>
-    </div>
-
-    <!-- show front massage start -->
 
     <!-- form start -->
     <div class="container   ">

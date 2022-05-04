@@ -1,38 +1,68 @@
 <?php
-include '../controller/user.php';
+include('database_connection.php');
 
-$userName = $_POST['username'];
-$name = $_POST['name'];
-$email = $_POST['email'];
-$pass1 = $_POST['newpassword'];
-if (!empty($_FILES)) {
-    if (is_uploaded_file($_FILES['uploadFile']['tmp_name'])) {
-        $ext = pathinfo($_FILES['uploadFile']['name'], PATHINFO_EXTENSION);
-        $allow_ext = array('jpg');
-        if (in_array($ext, $allow_ext)) {
-            $_source_path = $_FILES['uploadFile']['tmp_name'];
-            $target_path = 'upload/' . $_POST['username'] . ".$ext";
-            if (move_uploaded_file($_source_path, $target_path)) {
-            }
-            //echo $ext;
-        }
-    }
-} else {
-    echo "ext";
-    exit();
-}
-if (search_user($userName)) {
-    echo "this username already exists";
-    //header('Location: ../../resource/signup.php?error=invalid_usr');
-    exit();
-}
-if (search_email($email)) {
-    echo "this email already exists";
-    //header('Location: ../../resource/signup.php?error=invalid_usr');
-    exit();
+session_start();
+
+$message = '';
+
+if(isset($_SESSION['user_id']))
+{
+	header('location:home.php');
 }
 
+if(isset($_POST["register"]))
+{
+	$username = trim($_POST["username"]);
+	$password = trim($_POST["password"]);
+	$check_query = "
+	SELECT * FROM login 
+	WHERE username = :username
+	";
+	$statement = $connect->prepare($check_query);
+	$check_data = array(
+		':username'		=>	$username
+	);
+	if($statement->execute($check_data))	
+	{
+		if($statement->rowCount() > 0)
+		{
+			$message .= 'Username already taken'."\n";
+		}
+		else
+		{
+			if(empty($username))
+			{
+				$message .= 'Username is required'."\n";
+			}
+			if(empty($password))
+			{
+				$message .= 'Password is required'."\n";
+			}
+			else
+			{
+				if($password != $_POST['confirm_password'])
+				{
+					$message .= 'Password not match'."\n";
+				}
+			}
+			if($message == '')
+			{
+				$data = array(
+					':username'		=>	$username,
+					':password'		=>	password_hash($password, PASSWORD_DEFAULT)
+				);
 
-add_user($userName, $name, $email,  $pass1);
-
-header('Location: ../src/home.php');
+				$query = "
+				INSERT INTO login 
+				(username, password) 
+				VALUES (:username, :password)
+				";
+				$statement = $connect->prepare($query);
+				if($statement->execute($data))
+				{
+					$message = "Registration Completed"."\n";
+				}
+			}
+		}
+	}
+}

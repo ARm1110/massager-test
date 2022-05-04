@@ -2,14 +2,14 @@
 include '../controller/user.php';
 date_default_timezone_set('Iran');
 session_start();
-if (!isset($_SESSION['useid'])) {
+if (!isset($_SESSION['user_id'])) {
     echo "Error";
     echo '<script> window.open("../../resource/loginform.php","_self");</script>';
 }
 
 
 
-echo $_SESSION['useid'];
+
 
 echo "Login Success";
 
@@ -223,6 +223,7 @@ lg:block">
                                 </svg>
                             </label>
 
+
                             <input type="text" placeholder="Message" id="massage" class="block w-full py-2 pl-4 mx-3 bg-gray-100 rounded-full outline-none focus:text-gray-700" name="massage" required />
                             <input value="<?php echo $_SESSION['useid']; ?>" name='username' hidden="true" id="username" />
                             <input value="<?php echo time(); ?>" name='time' hidden="true" id="time" />
@@ -238,20 +239,7 @@ lg:block">
             </div>
         </div>
     </div>
-    <?php
-
-    // echo '<pre>';
-    // var_dump($all_users);
-    // echo '</pre>';
-
-    // echo '<pre>';
-    // var_dump($active_user);
-    // echo '</pre>';
-
-    // echo '<pre>';
-    // var_dump($all_users);
-    // echo '</pre>';
-    ?>
+  
     <script src="../auth/massage_prosses.js"></script>
 </body>
 
